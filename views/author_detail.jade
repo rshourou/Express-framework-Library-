@@ -1,0 +1,22 @@
+extends layout
+
+block content
+
+    h1 Title: #{author.name}
+    p #[stronng Date Of Birth:] #{author.date_of_birth_modified}
+    if author.date_of_death_modified
+        p #[stronng Date Of Death:] #{author.date_of_death_modified}
+
+    div(style='margin-left:20px;margin-top:20px')
+        h4 list of books
+        dl
+            each book in books  
+                dt
+                    a(href=book.url) #{book.title}
+                dd #{book.summary}
+            
+            else
+                p This author has no books.
+    hr
+    p
+        a(href=author.url +"/delete") Delete the author

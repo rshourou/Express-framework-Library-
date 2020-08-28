@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    h1 Title: #{book.title}
+    p #[strong Author:]
+        a(href=book.author.url) #{book.author.name}
+    p #[strong Summary:] #{book.summary}
+
+    if book_instance.length
+        p #[strong Delete the following bookinstances before attemping to delete this book]       
+        div(style='margin-left:20px;margin-top:20px')
+
+            h4 Copies
+            dl
+            each copy in book_instance
+                dt
+                    a(href=copy.url +'/delete') #{copy.imprint} 
+                dd #{copy.status}
+
+    else
+        form(action="", method="post")
+            div.form-froup
+                input#bookid.form-control(type="hidden", name="bookid" value=book._id required=true)
+            button.btn.btn-primary(type="submit") Delete
+
