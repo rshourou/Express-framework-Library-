@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 /* GET users listing. */
 router.get('/name', function(req, res, next) {
-  res.render('index', {title : 'name'})
+  res.send('respond with a resource name');
   
 });
 

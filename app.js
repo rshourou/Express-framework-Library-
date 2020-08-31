@@ -6,13 +6,14 @@ var logger = require('morgan');
 var compression = require ('compression');
 var helmet= require('helmet')
 
+
 var app = express();
 app.use(compression()); //compress all routes
 app.use(helmet())
 //Set up mongoose connection
 var mongoose = require('mongoose');
 var dev_db_url = 'mongodb+srv://Royash:1234@cluster0.7jcnk.mongodb.net/local_library?retryWrites=true&w=majority';
-var mongoDB = dev_db_url || process.env.MONGODB_URI ;
+var mongoDB =  process.env.MONGODB_URI  || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -51,5 +52,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;
