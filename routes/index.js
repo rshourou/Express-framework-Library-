@@ -10,4 +10,18 @@ router.get('/', function(req, res, next) {
 router.get('/cool',(req,res)=>{
     res.send(cool())
 })
+
+router.get('/times', (req,res)=>{
+  res.send( showTimes())
+})
+
+showTimes=function(){
+  let result='';
+  const times= process.env.TIMES || 5;
+  for(let i=0; i<= times;i++){
+    result += i +'';
+
+  }
+return result
+}
 module.exports = router;
